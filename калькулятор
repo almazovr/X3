@@ -1,0 +1,75 @@
+#include <iostream>
+
+int main() 
+{
+    setlocale(LC_ALL, "Russian");
+    {
+        int a,b;
+        char operation;
+        std::cout << "Введите 1 число:  ";
+        std::cin >> a;
+        std::cout << "Введите 2 число: ";
+        std::cin >> b;
+        std::cout << "Введите операцию: ";
+        std::cout << "1. Сумма  \n";
+        std::cout << "2. Разность  \n";
+        std::cout << "3. Произведение  \n";
+        std::cout << "4. Частное  \n";
+        std::cout << "5. Возведение в степень  \n";
+        std::cout << "6.квадратного корня  \n";
+        std::cout << "7.1 процента от числа  \n";
+        std::cout << "8.факториал числа \n";
+        std::cout << "9. Выход \n";
+        std::cin >> operation;
+
+        switch (operation)
+        {
+            case '1':
+                std::cout << "Сумма = " << a + b << '\n';
+                break;
+            case '2':
+                std::cout << "Разность =  " << a - b << '\n';
+                break;
+            case '3':
+                std::cout << "Произведение =  " << a * b << '\n';
+                break;
+            case '4':
+                if (b ==0)
+                {
+                    a / b;
+                    std::cout << "На 0 делить нельзя";
+                }
+                else
+                {
+                    std::cout << "Частное = " << a / b << '\n';
+                }
+                break;
+            case '5':
+                std::cout << "Возведение в степень = " << pow(a,b) << '\n';
+                break;
+            case '6':
+                std::cout << "квадратный корень = " << sqrt(a) << '\n';
+                break;
+            case '7':
+                std::cout << "1 процент от числа = " << a * 0.01 << '\n';
+                break;
+            case '8':
+                if (a == 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    std::cout << "Факториал = " << tgamma(a+1) << '\n';
+                }
+                break;
+            case '9':
+                return 0;
+            
+            default:
+
+                std::cout << "Ошибка\n";
+        }
+        return 0;
+    }
+}
