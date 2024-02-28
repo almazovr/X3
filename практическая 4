@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <algorithm>
+#include <random>
+
+
+int main()
+{
+
+    setlocale(LC_ALL, "Russian");
+    {
+        std::string slovo;
+        std::cout << "введите слово";
+        std::cin >> slovo;
+
+        int vibor;
+        std::cout << "введите действие";
+        std::cout << "1. слово задом на перёд";
+        std::cout << "2. слово без гласных";
+        std::cout << "3. слово без согласных";
+        std::cout << "4. рандомно раскидать буквы";
+        std::cin >> vibor;
+
+        switch (vibor)
+        {
+        case 1:
+            zadom(slovo);
+            break;
+        case 2:
+            glaz(slovo);
+            break;
+        case 3:
+            sogl(slovo);
+            break;
+        case 4:
+            perem(slovo);
+            break;
+        default:
+            std::cout << "Неверный выбор действия.";
+            break;
+        }
+
+    }
+}
+
+void zadom(std::string slovo)
+{
+    std::reverse(slovo.begin(), slovo.end());
+    std::cout << "Слово в обратном порядке: " << slovo << std::endl;
+}
+
+void glaz(std::string slovo)
+{
+    std::string vowels = "уеыаоэяиюё";
+    slovo.erase(std::remove_if(slovo.begin(), slovo.end(), [&](char c) {
+        return vowels.find(c) != std::string::npos;
+        }), slovo.end());
+    std::cout << "Слово без гласных: " << slovo << std::endl;
+}
+
+void sogl(std::string slovo)
+{
+    std::string consonants = "йцкнгшщзхъфвпрлджчсмтьб";
+    slovo.erase(std::remove_if(slovo.begin(), slovo.end(), [&](char c)
+        {
+            return consonants.find(c) != std::string::npos;
+        }), slovo.end());
+    std::cout << "Слово без согласных: " << slovo << std::endl;
+}
+
+void perem(std::string slovo)
+{
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(slovo.begin(), slovo.end(), g);
+    std::cout << "Перемешанное слово: " << slovo << std::endl;
+}
