@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <random>
+using namespace std;
 
 
 int main()
@@ -11,31 +12,49 @@ int main()
 
     setlocale(LC_ALL, "Russian");
     {
-        std::string slovo;
+        string slovo;
         std::cout << "введите слово";
         std::cin >> slovo;
 
-        int vibor;
-        std::cout << "введите действие";
-        std::cout << "1. слово задом на перёд";
-        std::cout << "2. слово без гласных";
-        std::cout << "3. слово без согласных";
-        std::cout << "4. рандомно раскидать буквы";
+        char vibor;
+        std::cout << "введите действие /n";
+        std::cout << "1. слово задом на перёд /n";
+        std::cout << "2. слово без гласных /n";
+        std::cout << "3. слово без согласных /n";
+        std::cout << "4. рандомно раскидать буквы /n";
         std::cin >> vibor;
 
         switch (vibor)
         {
         case 1:
-            zadom(slovo);
+            std::reverse(slovo.begin(), slovo.end());
+            std::cout << "Слово в обратном порядке: " << slovo << std::endl;
             break;
         case 2:
-            glaz(slovo);
+            for (char c : slovo) 
+            {
+                if (c != 'ё' && c != 'у' && c != 'е' && c != 'ы' && c != 'а' &&
+                    c != 'о' && c != 'э' && c != 'я' && c != 'и' && c != 'ю' && c != 'Ё' && c != 'У' && c != 'Е' && c != 'Ы' && c != 'А' &&
+                    c != 'О' && c != 'Э' && c != 'Я' && c != 'И' && c != 'Ю') 
+                    slovo += c;
+            }
             break;
         case 3:
-            sogl(slovo);
+            for (char c : slovo)
+            {
+                if (c != 'й' && c != 'ц' && c != 'к' && c != 'н' && c != 'г' &&
+                    c != 'ш' && c != 'щ' && c != 'з' && c != 'х' && c != 'ъ' && c != 'ф' && c != 'в' && c != 'п' && c != 'р' && c != 'л' &&
+                    c != 'д' && c != 'ж' && c != 'ч' && c != 'с' && c != 'м' && c != 'т' && c != 'ь' && c != 'б' && c != 'Й' && c != 'Ц' && c != 'К' && c != 'Н' && c != 'Г' &&
+                    c != 'Ш' && c != 'Щ' && c != 'З' && c != 'Х' && c != 'Ъ' && c != 'Ф' && c != 'В' && c != 'П' && c != 'Р' && c != 'Л' &&
+                    c != 'Д' && c != 'Ж' && c != 'Ч' && c != 'С' && c != 'М' && c != 'Т' && c != 'Ь' && c != 'Б')
+                    slovo += c;
+            }
             break;
         case 4:
-            perem(slovo);
+            std::random_device rd;
+            std::mt19937 g(rd());
+            std::shuffle(slovo.begin(), slovo.end(), g);
+            std::cout << "Перемешанное слово: " << slovo << std::endl;
             break;
         default:
             std::cout << "Неверный выбор действия.";
@@ -43,37 +62,5 @@ int main()
         }
 
     }
-}
-
-void zadom(std::string slovo)
-{
-    std::reverse(slovo.begin(), slovo.end());
-    std::cout << "Слово в обратном порядке: " << slovo << std::endl;
-}
-
-void glaz(std::string slovo)
-{
-    std::string vowels = "уеыаоэяиюё";
-    slovo.erase(std::remove_if(slovo.begin(), slovo.end(), [&](char c) {
-        return vowels.find(c) != std::string::npos;
-        }), slovo.end());
-    std::cout << "Слово без гласных: " << slovo << std::endl;
-}
-
-void sogl(std::string slovo)
-{
-    std::string consonants = "йцкнгшщзхъфвпрлджчсмтьб";
-    slovo.erase(std::remove_if(slovo.begin(), slovo.end(), [&](char c)
-        {
-            return consonants.find(c) != std::string::npos;
-        }), slovo.end());
-    std::cout << "Слово без согласных: " << slovo << std::endl;
-}
-
-void perem(std::string slovo)
-{
-    std::random_device rd;
-    std::mt19937 g(rd());
-    std::shuffle(slovo.begin(), slovo.end(), g);
-    std::cout << "Перемешанное слово: " << slovo << std::endl;
+    return 0;
 }
