@@ -2,9 +2,6 @@
 #include <Windows.h>
 #include <string>
 #include <cstdio>
-#include <cmath>
-#include <vector>
-#include <complex>
 
 using namespace std;
 class BankAccount
@@ -27,11 +24,11 @@ public:
         if (amount > 0)
         {
             balance += amount;
-            std::cout << "Средства успешно внесены\n";
+            cout << "Средства успешно внесены\n";
         }
         else
         {
-            std::cout << "Ошибка: сумма должна быть положительной\n";
+            cout << "Ошибка: сумма должна быть положительной\n";
         }
     }
 
@@ -42,15 +39,15 @@ public:
             if (amount <= balance)
             {
                 balance -= amount;
-                std::cout << "Средства успешно сняты\n";
+                cout << "Средства успешно сняты\n";
             }
             else
             {
-                std::cout << "Ошибка: недостаточно средств на счете\n";
+                cout << "Ошибка: недостаточно средств на счете\n";
             }
         }
         else {
-            std::cout << "Ошибка: сумма должна быть положительной\n";
+            cout << "Ошибка: сумма должна быть положительной\n";
         }
     }
 
@@ -81,12 +78,12 @@ public:
         {
             from.balance -= amount;
             to.balance += amount;
-            std::cout << "Перевод успешно выполнен\n";
+            cout << "Перевод успешно выполнен\n";
             return true;
         }
         else
         {
-            std::cout << "Ошибка: недостаточно средств на счете для перевода\n";
+            cout << "Ошибка: недостаточно средств на счете для перевода\n";
             return false;
         }
     }
@@ -96,14 +93,14 @@ int main()
 {
     SetConsoleCP(1251);
     setlocale(LC_ALL, "Russian");
-    BankAccount acc1(12345, 1000.0);
-    BankAccount acc2(54321, 2000.0);
+    BankAccount acc1(1234, 1000.0);
+    BankAccount acc2(1987, 2000.0);
     int a, b;
-    cout << "Введите данные аккаунта:" << endl;
+    cout << "Введите пароль:" << endl;
     cin >> a;
     cout << "Введите ваш баланс:" << endl;
     cin >> b;
-    cout << "Выберите одно из действий:" << endl;
+    cout << "Выберите действие:" << endl;
     cout << "1) пополнение баланса:" << endl;
     cout << "2) снять средства со счета:" << endl;
     cout << "3) расчёт текущего баланса:" << endl;
@@ -112,7 +109,7 @@ int main()
     cout << "6) получить номер банковского счёта:" << endl;
     cout << "7) выйти." << endl;
     int c;
-    if (a == 12345 && b == 1000) {
+    if (a == 1234 && b == 1000) {
         while (true) {
             int i;
             cout << "Выберите одно из действий:" << endl;
@@ -147,7 +144,7 @@ int main()
         }
 
     }
-    if (a == 54321 && b == 2000) {
+    if (a == 1987 && b == 2000) {
         while (true) {
             int i;
             cout << "Выберите одно из действий:" << endl;
