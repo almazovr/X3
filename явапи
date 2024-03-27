@@ -7,44 +7,44 @@
 #include <complex>
 
 using namespace std;
-class BankAccount 
+class BankAccount
 {
-    private:
-        int accountNumber;
-        double balance;
-        double interestRate;
+private:
+    int accountNumber;
+    double balance;
+    double interestRate;
 
-    public:
-        BankAccount(int number, double initialBalance) 
-        {
-            accountNumber = number;
-            balance = initialBalance;
-            interestRate = 0.0;
-        }
-
-    void deposit(double amount) 
+public:
+    BankAccount(int number, double initialBalance)
     {
-        if (amount > 0) 
+        accountNumber = number;
+        balance = initialBalance;
+        interestRate = 0.0;
+    }
+
+    void deposit(double amount)
+    {
+        if (amount > 0)
         {
             balance += amount;
             std::cout << "Средства успешно внесены\n";
         }
-        else 
+        else
         {
             std::cout << "Ошибка: сумма должна быть положительной\n";
         }
     }
 
-    void vivod(double amount) 
+    void vivod(double amount)
     {
-        if (amount > 0) 
+        if (amount > 0)
         {
-            if (amount <= balance) 
+            if (amount <= balance)
             {
                 balance -= amount;
                 std::cout << "Средства успешно сняты\n";
             }
-            else 
+            else
             {
                 std::cout << "Ошибка: недостаточно средств на счете\n";
             }
@@ -54,37 +54,37 @@ class BankAccount
         }
     }
 
-    double getBalance() 
+    double getBalance()
     {
         return balance;
     }
 
-    double Procenti() 
+    double Procenti()
     {
         double interest = balance * interestRate * (1.0 / 12.0);
         return interest;
     }
 
-    void kofProcenti(double rate) 
+    void kofProcenti(double rate)
     {
         interestRate = rate;
     }
 
-    int getAccountNumber() 
+    int getAccountNumber()
     {
         return accountNumber;
     }
 
-    friend bool transfer(BankAccount& from, BankAccount& to, double amount) 
+    friend bool transfer(BankAccount& from, BankAccount& to, double amount)
     {
-        if (amount > 0.0 && amount <= from.balance) 
+        if (amount > 0.0 && amount <= from.balance)
         {
             from.balance -= amount;
             to.balance += amount;
             std::cout << "Перевод успешно выполнен\n";
             return true;
         }
-        else 
+        else
         {
             std::cout << "Ошибка: недостаточно средств на счете для перевода\n";
             return false;
@@ -98,7 +98,7 @@ int main()
     setlocale(LC_ALL, "Russian");
     BankAccount acc1(12345, 1000.0);
     BankAccount acc2(54321, 2000.0);
-    int a,b;
+    int a, b;
     cout << "Введите данные аккаунта:" << endl;
     cin >> a;
     cout << "Введите ваш баланс:" << endl;
@@ -120,32 +120,32 @@ int main()
             if (c == 1) {
                 cout << "введите сумму, которую хотите внести:" << endl;
                 cin >> i;
-                cout << "Ваш баланс:" << acc1.deposit(i)<<endl;
+                cout << "Ваш баланс:" << acc1.deposit(i) << endl;
             }
             if (c == 2) {
                 cout << "введите сумму, которую хотите снять:" << endl;
                 cin >> i;
-                cout<<"Ваш баланс:" << acc1.withdraw(i) << endl;
+                cout << "Ваш баланс:" << acc1.vivod(i) << endl;
             }
             if (c == 3) {
                 cout << "Ваш баланс:" << acc1.getBalance() << endl;
             }
             if (c == 4) {
-                cout << "Ваш баланс:" << acc1.getInterest() << endl;
+                cout << "Ваш баланс:" << acc1.Procenti() << endl;
             }
             if (c == 5) {
                 cout << "введите новую процентную ставку(в процентах):" << endl;
                 cin >> i;
-                cout << "Ваша процентная ставка:" << acc1.setInterestRate(i) << endl;
+                cout << "Ваша процентная ставка:" << acc1.kofProcenti(i) << endl;
             }
             if (c == 6) {
                 cout << "Номер вашего счёта:" << acc1.getAccountNumber() << endl;
             }
-            if(c==7) {
+            if (c == 7) {
                 break;
             }
         }
-        
+
     }
     if (a == 54321 && b == 2000) {
         while (true) {
@@ -160,18 +160,18 @@ int main()
             if (c == 2) {
                 cout << "введите сумму, которую хотите снять:" << endl;
                 cin >> i;
-                cout << "Ваш баланс:" << acc2.withdraw(i) << endl;
+                cout << "Ваш баланс:" << acc2.vivod(i) << endl;
             }
             if (c == 3) {
                 cout << "Ваш баланс:" << acc2.getBalance() << endl;
             }
             if (c == 4) {
-                cout << "Ваш баланс:" << acc2.getInterest() << endl;
+                cout << "Ваш баланс:" << acc2.Procenti() << endl;
             }
             if (c == 5) {
                 cout << "введите новую процентную ставку(в процентах):" << endl;
                 cin >> i;
-                cout << "Ваша процентная ставка:" << acc2.setInterestRate(i) << endl;
+                cout << "Ваша процентная ставка:" << acc2.kofProcenti(i) << endl;
             }
             if (c == 6) {
                 cout << "Номер вашего счёта:" << acc2.getAccountNumber() << endl;
