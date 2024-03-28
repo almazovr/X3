@@ -19,7 +19,7 @@ public:
         interestRate = 0.0;
     }
 
-    void deposit(double amount)
+    double  deposit(double amount)
     {
         if (amount > 0)
         {
@@ -32,7 +32,7 @@ public:
         }
     }
 
-    void vivod(double amount)
+    double  vivod(double amount)
     {
         if (amount > 0)
         {
@@ -62,7 +62,7 @@ public:
         return interest;
     }
 
-    void kofProcenti(double rate)
+    double  kofProcenti(double rate)
     {
         interestRate = rate;
     }
